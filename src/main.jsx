@@ -48,6 +48,49 @@ import ChildDetails from "./pages/Patients/Children/ChildDetails";
 import CreateChild from "./pages/Patients/Children/CreateChild";
 import EditChild from "./pages/Patients/Children/EditChild";
 
+//import Visits Pages
+import VisitList from './pages/Visits/VisitList';
+import CreateVisit from './pages/Visits/CreateVisit';
+import EditVisit from './pages/Visits/EditVisit';
+import VisitDetail from './pages/Visits/VisitDetail';
+
+//import PatientVisit Pages
+import PatientVisitList from './pages/PatientVisit/PatientVisitList';
+import CreatePatientVisit from './pages/PatientVisit/CreatePatientVisit';
+import PatientVisitDetail from './pages/PatientVisit/PatientVisitDetail';
+import EditPatientVisit from './pages/PatientVisit/EditPatientVisit';
+
+//import PatientVisitRouting Pages
+import VisitRoutingIndex from './pages/PatientVisitRouting/VisitRoutingIndex';
+import VisitRoutingCreate from './pages/PatientVisitRouting/VisitRoutingCreate';
+import VisitRoutingShow from './pages/PatientVisitRouting/VisitRoutingShow';
+import VisitRoutingEdit from './pages/PatientVisitRouting/VisitRoutingEdit';
+
+//import LabTest Pages
+import LabTestIndex from './pages/LabTests/LabTestIndex';
+import LabTestCreate from './pages/LabTests/LabTestCreate';
+import LabTestShow from './pages/LabTests/LabTestShow';
+import LabTestEdit from './pages/LabTests/LabTestEdit';
+
+//import LabResult Pages
+import LabResultIndex from './pages/LabResults/LabResultIndex';
+import LabResultCreate from './pages/LabResults/LabResultCreate';
+import LabResultShow from './pages/LabResults/LabResultShow';
+import LabResultEdit from './pages/LabResults/LabResultEdit';
+
+
+import MedicationList from './pages/Medication/MedicationList';
+import MedicationForm from './pages/Medication/MedicationForm';
+import MedicationDetail from './pages/Medication/MedicationDetail';
+import PatientMedications from './pages/Medication/PatientMedications';
+
+
+import VaccinationList from './pages/Vaccinations/VaccinationList';
+import CreateVaccination from './pages/Vaccinations/CreateVaccination';
+import VaccinationDetail from './pages/Vaccinations/VaccinationDetail';
+import EditVaccination from './pages/Vaccinations/EditVaccination';
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
@@ -101,6 +144,49 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/patients/children/create" element={<CreateChild />} />
         <Route path="/patients/children/:id" element={<ChildDetails />} />
         <Route path="/patients/children/:id/edit" element={<EditChild />} />
+
+        {/* Visits Routes */}
+     <Route path="/visits" element={<VisitList />} />
+          <Route path="/visits/create" element={<CreateVisit />} />
+          <Route path="/visits/:id" element={<VisitDetail />} />
+          <Route path="/visits/:id/edit" element={<EditVisit />} />
+
+          {/* Patient Visit Routes */}
+          <Route path="/patient-visits" element={<PatientVisitList />} />
+          <Route path="/patient-visits/create" element={<CreatePatientVisit />} />
+          <Route path="/patient-visits/:id" element={<PatientVisitDetail />} />
+          <Route path="/patient-visits/:id/edit" element={<EditPatientVisit />} />
+
+          {/* Patient Visit Routes */}
+          <Route path="/visit-routings" element={<VisitRoutingIndex />} />
+<Route path="/visit-routings/create" element={<VisitRoutingCreate />} />
+<Route path="/visit-routings/:id" element={<VisitRoutingShow />} />
+<Route path="/visit-routings/:id/edit" element={<VisitRoutingEdit />} />
+
+ {/* LabTes Routes */}
+<Route path="/lab-tests" element={<LabTestIndex />} />
+<Route path="/lab-tests/create" element={<LabTestCreate />} />
+<Route path="/lab-tests/:id" element={<LabTestShow />} />
+<Route path="/lab-tests/:id/edit" element={<LabTestEdit />} />
+
+ {/* LabResults Routes */}
+<Route path="/lab-results" element={<LabResultIndex />} />
+<Route path="/lab-results/create" element={<LabResultCreate />} />
+<Route path="/lab-results/:id" element={<LabResultShow />} />
+<Route path="/lab-results/:id/edit" element={<LabResultEdit />} />
+
+ {/* Medication Routes */}
+        <Route path="/medications" element={<MedicationList />} />
+        <Route path="/medications/create" element={<MedicationForm />} />
+        <Route path="/medications/:id" element={<MedicationDetail />} />
+        <Route path="/medications/:id/edit" element={<MedicationForm />} />
+        <Route path="/patients/:patientId/medications" element={<PatientMedications />} />
+
+        <Route path="/vaccinations" element={<VaccinationList />} />
+<Route path="/vaccinations/create" element={<CreateVaccination />} />
+<Route path="/vaccinations/:id" element={<VaccinationDetail />} />
+<Route path="/vaccinations/:id/edit" element={<EditVaccination />} />
+
       </Route>
     </Routes>
   </BrowserRouter>

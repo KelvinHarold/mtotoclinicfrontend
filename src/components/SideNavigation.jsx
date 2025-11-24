@@ -10,11 +10,19 @@ import {
   FaFemale,
   FaTimes,
   FaChild,
-  FaBaby // Nitaongeza FaBaby icon kwa Children
+  FaBaby,
+  FaCalendarAlt,
+  FaStethoscope,
+  FaExchangeAlt,
+  FaFlask,
+  FaFileMedical,
+  FaPills,
+  FaSyringe // Icon mpya kwa Vaccinations
 } from 'react-icons/fa';
 
 const SideNavigation = ({ onClose }) => {
   const [user, setUser] = useState(null);
+  const [patientsOpen, setPatientsOpen] = useState(false);
 
   useEffect(() => {
     const userData = localStorage.getItem('user_data');
@@ -34,7 +42,6 @@ const SideNavigation = ({ onClose }) => {
   const hoverNavItemClasses = "hover:bg-gray-50 hover:text-gray-900";
 
   const handleNavClick = () => {
-    // Close sidebar on mobile when a nav item is clicked
     if (window.innerWidth < 768) {
       onClose?.();
     }
@@ -42,7 +49,6 @@ const SideNavigation = ({ onClose }) => {
 
   return (
     <nav className="w-64 bg-white shadow-sm border-r border-gray-200 flex-shrink-0 flex flex-col h-full">
-      {/* Close button for mobile */}
       <div className="md:hidden flex justify-end p-4 border-b border-gray-200">
         <button
           onClick={onClose}
@@ -71,65 +77,169 @@ const SideNavigation = ({ onClose }) => {
                   <span>Dashboard</span>
                 </NavLink>
               </li>
-              
+
+              {/* PATIENTS DROPDOWN */}
               <li>
-                <NavLink 
-                  to="/patients" 
-                  end
-                  className={({ isActive }) => 
-                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
-                  }
-                  onClick={handleNavClick}
+                <button
+                  onClick={() => setPatientsOpen(prev => !prev)}
+                  className={`${navItemClasses} ${hoverNavItemClasses} w-full flex justify-between items-center`}
                 >
-                  <FaUsers className="mr-3 text-blue-500 w-5 h-5" />
-                  <span>Manage Patients</span>
-                </NavLink>
+                  <div className="flex items-center">
+                    <FaUsers className="mr-3 text-blue-500 w-5 h-5" />
+                    <span>Patients</span>
+                  </div>
+                  <span>{patientsOpen ? "▲" : "▼"}</span>
+                </button>
+
+                {patientsOpen && (
+                  <ul className="ml-10 mt-2 space-y-1">
+                    <li>
+                      <NavLink
+                        to="/patients/pregnant-women"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaFemale className="mr-2 text-pink-500 w-4 h-4" />
+                        Pregnant Women
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/patients/breastfeeding-women"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaChild className="mr-2 text-blue-400 w-4 h-4" />
+                        Breastfeeding Women
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/patients/children"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaBaby className="mr-2 text-purple-500 w-4 h-4" />
+                        Children
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </li>
-              
+
+              {/* Other Admin links unchanged */}
               <li>
                 <NavLink 
-                  to="/patients/pregnant-women" 
+                  to="/patient-visits" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaFemale className="mr-3 text-pink-500 w-5 h-5" />
-                  <span>Pregnant Women</span>
+                  <FaStethoscope className="mr-3 text-teal-500 w-5 h-5" />
+                  <span>Patient Visits</span>
                 </NavLink>
               </li>
 
-              {/* Breastfeeding Women link for Admin */}
               <li>
                 <NavLink 
-                  to="/patients/breastfeeding-women" 
+                  to="/visit-routings" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaChild className="mr-3 text-blue-400 w-5 h-5" />
-                  <span>Breastfeeding Women</span>
+                  <FaExchangeAlt className="mr-3 text-indigo-500 w-5 h-5" />
+                  <span>Visit Routings</span>
                 </NavLink>
               </li>
 
-              {/* Children link for Admin */}
+              {/* LAB TESTS & RESULTS & MEDICATIONS & VACCINATIONS SECTION */}
               <li>
                 <NavLink 
-                  to="/patients/children" 
+                  to="/lab-tests" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaBaby className="mr-3 text-purple-500 w-5 h-5" />
-                  <span>Children</span>
+                  <FaFlask className="mr-3 text-red-500 w-5 h-5" />
+                  <span>Lab Tests</span>
                 </NavLink>
               </li>
-              
+
+              <li>
+                <NavLink 
+                  to="/lab-results" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaFileMedical className="mr-3 text-green-600 w-5 h-5" />
+                  <span>Lab Results</span>
+                </NavLink>
+              </li>
+
+              {/* MEDICATIONS LINK */}
+              <li>
+                <NavLink 
+                  to="/medications" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaPills className="mr-3 text-purple-500 w-5 h-5" />
+                  <span>Medications</span>
+                </NavLink>
+              </li>
+
+              {/* VACCINATIONS LINK - NEWLY ADDED */}
+              <li>
+                <NavLink 
+                  to="/vaccinations" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaSyringe className="mr-3 text-blue-600 w-5 h-5" />
+                  <span>Vaccinations</span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink 
+                  to="/visits" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaCalendarAlt className="mr-3 text-orange-500 w-5 h-5" />
+                  <span>Visits (Old)</span>
+                </NavLink>
+              </li>
+
               <li>
                 <NavLink 
                   to="/admin/users" 
@@ -143,7 +253,7 @@ const SideNavigation = ({ onClose }) => {
                   <span>Manage Users</span>
                 </NavLink>
               </li>
-              
+
               <li>
                 <NavLink 
                   to="/admin/roles" 
@@ -157,7 +267,7 @@ const SideNavigation = ({ onClose }) => {
                   <span>Manage Roles</span>
                 </NavLink>
               </li>
-              
+
               <li>
                 <NavLink 
                   to="/admin/permissions" 
@@ -173,7 +283,8 @@ const SideNavigation = ({ onClose }) => {
               </li>
             </>
           )}
-          
+
+          {/* NON-ADMIN SECTION */}
           {!isAdmin && (
             <>
               <li>
@@ -189,62 +300,166 @@ const SideNavigation = ({ onClose }) => {
                   <span>Dashboard</span>
                 </NavLink>
               </li>
-              
+
+              {/* PATIENTS DROP-DOWN (Non Admin) */}
               <li>
-                <NavLink 
-                  to="/patients" 
-                  end
-                  className={({ isActive }) => 
-                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
-                  }
-                  onClick={handleNavClick}
+                <button
+                  onClick={() => setPatientsOpen(prev => !prev)}
+                  className={`${navItemClasses} ${hoverNavItemClasses} w-full flex justify-between items-center`}
                 >
-                  <FaUsers className="mr-3 text-blue-500 w-5 h-5" />
-                  <span>Patients</span>
-                </NavLink>
+                  <div className="flex items-center">
+                    <FaUsers className="mr-3 text-blue-500 w-5 h-5" />
+                    <span>Patients</span>
+                  </div>
+                  <span>{patientsOpen ? "▲" : "▼"}</span>
+                </button>
+
+                {patientsOpen && (
+                  <ul className="ml-10 mt-2 space-y-1">
+                    <li>
+                      <NavLink
+                        to="/patients/pregnant-women"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaFemale className="mr-2 text-pink-500 w-4 h-4" />
+                        Pregnant Women
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/patients/breastfeeding-women"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaChild className="mr-2 text-blue-400 w-4 h-4" />
+                        Breastfeeding Women
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/patients/children"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaBaby className="mr-2 text-purple-500 w-4 h-4" />
+                        Children
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </li>
-              
+
+              {/* Non-admin remaining links */}
               <li>
                 <NavLink 
-                  to="/patients/pregnant-women" 
+                  to="/patient-visits" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaFemale className="mr-3 text-pink-500 w-5 h-5" />
-                  <span>Pregnant Women</span>
+                  <FaStethoscope className="mr-3 text-teal-500 w-5 h-5" />
+                  <span>Patient Visits</span>
                 </NavLink>
               </li>
 
-              {/* Breastfeeding Women link for non-Admin users */}
               <li>
                 <NavLink 
-                  to="/patients/breastfeeding-women" 
+                  to="/visit-routings" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaChild className="mr-3 text-blue-400 w-5 h-5" />
-                  <span>Breastfeeding Women</span>
+                  <FaExchangeAlt className="mr-3 text-indigo-500 w-5 h-5" />
+                  <span>Visit Routings</span>
                 </NavLink>
               </li>
 
-              {/* Children link for non-Admin users */}
+              {/* LAB TESTS & RESULTS & MEDICATIONS & VACCINATIONS SECTION (Non Admin) */}
               <li>
                 <NavLink 
-                  to="/patients/children" 
+                  to="/lab-tests" 
                   end
                   className={({ isActive }) => 
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
-                  <FaBaby className="mr-3 text-purple-500 w-5 h-5" />
-                  <span>Children</span>
+                  <FaFlask className="mr-3 text-red-500 w-5 h-5" />
+                  <span>Lab Tests</span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink 
+                  to="/lab-results" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaFileMedical className="mr-3 text-green-600 w-5 h-5" />
+                  <span>Lab Results</span>
+                </NavLink>
+              </li>
+
+              {/* MEDICATIONS LINK */}
+              <li>
+                <NavLink 
+                  to="/medications" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaPills className="mr-3 text-purple-500 w-5 h-5" />
+                  <span>Medications</span>
+                </NavLink>
+              </li>
+
+              {/* VACCINATIONS LINK - NEWLY ADDED (Non Admin) */}
+              <li>
+                <NavLink 
+                  to="/vaccinations" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaSyringe className="mr-3 text-blue-600 w-5 h-5" />
+                  <span>Vaccinations</span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink 
+                  to="/visits" 
+                  end
+                  className={({ isActive }) => 
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaCalendarAlt className="mr-3 text-orange-500 w-5 h-5" />
+                  <span>Clinic Records</span>
                 </NavLink>
               </li>
             </>

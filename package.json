@@ -1,5 +1,5 @@
 {
-  "name": "Santiago Bernabeu",
+  "name": "Mtoto Clinic",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
     "@tailwindcss/vite": "^4.1.14",
     "apexcharts": "^5.3.5",
     "axios": "^1.12.2",
