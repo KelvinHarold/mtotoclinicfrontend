@@ -91,6 +91,24 @@ import VaccinationDetail from './pages/Vaccinations/VaccinationDetail';
 import EditVaccination from './pages/Vaccinations/EditVaccination';
 
 
+import MedicalAdviceList from './pages/MedicalAdvice/MedicalAdviceList';
+import CreateMedicalAdvice from './pages/MedicalAdvice/CreateMedicalAdvice';
+import EditMedicalAdvice from './pages/MedicalAdvice/EditMedicalAdvice';
+import MedicalAdviceDetail from './pages/MedicalAdvice/MedicalAdviceDetail';
+
+
+import AppointmentList from './pages/Appointments/AppointmentList';
+import CreateAppointment from './pages/Appointments/CreateAppointment';
+import EditAppointment from './pages/Appointments/EditAppointment';
+import AppointmentDetail from './pages/Appointments/AppointmentDetail';
+
+
+import RelativesList from './pages/Relatives/RelativesList';
+import RelativeForm from './pages/Relatives/RelativeForm';
+import RelativeDetails from './pages/Relatives/RelativeDetails';
+import PatientRelatives from './pages/Relatives/PatientRelatives';
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
@@ -186,6 +204,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 <Route path="/vaccinations/create" element={<CreateVaccination />} />
 <Route path="/vaccinations/:id" element={<VaccinationDetail />} />
 <Route path="/vaccinations/:id/edit" element={<EditVaccination />} />
+
+<Route path="/medical-advice" element={<MedicalAdviceList />} />
+<Route path="/medical-advice/create" element={<CreateMedicalAdvice />} />
+<Route path="/medical-advice/:id" element={<MedicalAdviceDetail />} />
+<Route path="/medical-advice/:id/edit" element={<EditMedicalAdvice />} />
+
+<Route path="/appointments" element={<AppointmentList />} />
+<Route path="/appointments/create" element={<CreateAppointment />} />
+<Route path="/appointments/:id" element={<AppointmentDetail />} />
+<Route path="/appointments/:id/edit" element={<EditAppointment />} />
+
+  <Route path="/relatives" element={<RelativesList />} />
+  <Route path="/relatives/create" element={<RelativeForm />} />
+  <Route path="/relatives/:id" element={<RelativeDetails />} />
+  <Route path="/relatives/:id/edit" element={<RelativeForm />} />
+  <Route path="/patients/:patientId/relatives" element={<PatientRelatives />} />
 
       </Route>
     </Routes>

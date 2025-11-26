@@ -17,7 +17,8 @@ import {
   FaFlask,
   FaFileMedical,
   FaPills,
-  FaSyringe // Icon mpya kwa Vaccinations
+  FaSyringe,
+  FaUserPlus // Icon mpya kwa Patient Register
 } from 'react-icons/fa';
 
 const SideNavigation = ({ onClose }) => {
@@ -65,10 +66,10 @@ const SideNavigation = ({ onClose }) => {
           {isAdmin && (
             <>
               <li>
-                <NavLink 
-                  to="/dashboards/admin" 
+                <NavLink
+                  to="/dashboards/admin"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -93,6 +94,21 @@ const SideNavigation = ({ onClose }) => {
 
                 {patientsOpen && (
                   <ul className="ml-10 mt-2 space-y-1">
+                   
+                    <li>
+                      <NavLink
+                        to="/patients"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaUsers className="mr-2 text-blue-500 w-4 h-4" />
+                        All Patients
+                      </NavLink>
+                    </li>
+
                     <li>
                       <NavLink
                         to="/patients/pregnant-women"
@@ -140,10 +156,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* Other Admin links unchanged */}
               <li>
-                <NavLink 
-                  to="/patient-visits" 
+                <NavLink
+                  to="/patient-visits"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -154,10 +170,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/visit-routings" 
+                <NavLink
+                  to="/visit-routings"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -167,12 +183,27 @@ const SideNavigation = ({ onClose }) => {
                 </NavLink>
               </li>
 
+              {/* APPOINTMENTS LINK */}
+              <li>
+                <NavLink
+                  to="/appointments"
+                  end
+                  className={({ isActive }) =>
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaCalendarAlt className="mr-3 text-purple-600 w-5 h-5" />
+                  <span>Appointments</span>
+                </NavLink>
+              </li>
+
               {/* LAB TESTS & RESULTS & MEDICATIONS & VACCINATIONS SECTION */}
               <li>
-                <NavLink 
-                  to="/lab-tests" 
+                <NavLink
+                  to="/lab-tests"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -183,10 +214,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/lab-results" 
+                <NavLink
+                  to="/lab-results"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -198,10 +229,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* MEDICATIONS LINK */}
               <li>
-                <NavLink 
-                  to="/medications" 
+                <NavLink
+                  to="/medications"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -213,10 +244,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* VACCINATIONS LINK - NEWLY ADDED */}
               <li>
-                <NavLink 
-                  to="/vaccinations" 
+                <NavLink
+                  to="/vaccinations"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -227,24 +258,39 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/visits" 
+                <NavLink
+                  to="/visits"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
                 >
                   <FaCalendarAlt className="mr-3 text-orange-500 w-5 h-5" />
-                  <span>Visits (Old)</span>
+                  <span>Clinic Records</span>
+                </NavLink>
+              </li>
+
+              {/* MEDICAL ADVICE LINK */}
+              <li>
+                <NavLink
+                  to="/medical-advice"
+                  end
+                  className={({ isActive }) =>
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaStethoscope className="mr-3 text-green-600 w-5 h-5" />
+                  <span>Medical Advice</span>
                 </NavLink>
               </li>
 
               <li>
-                <NavLink 
-                  to="/admin/users" 
+                <NavLink
+                  to="/admin/users"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -255,10 +301,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/admin/roles" 
+                <NavLink
+                  to="/admin/roles"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -268,11 +314,26 @@ const SideNavigation = ({ onClose }) => {
                 </NavLink>
               </li>
 
+              {/* RELATIVES LINK */}
               <li>
-                <NavLink 
-                  to="/admin/permissions" 
+                <NavLink
+                  to="/relatives"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
+                    `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                  }
+                  onClick={handleNavClick}
+                >
+                  <FaUserFriends className="mr-3 text-green-500 w-5 h-5" />
+                  <span>Relatives</span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/admin/permissions"
+                  end
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -288,10 +349,10 @@ const SideNavigation = ({ onClose }) => {
           {!isAdmin && (
             <>
               <li>
-                <NavLink 
-                  to="/dashboard" 
+                <NavLink
+                  to="/dashboard"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -316,6 +377,35 @@ const SideNavigation = ({ onClose }) => {
 
                 {patientsOpen && (
                   <ul className="ml-10 mt-2 space-y-1">
+                    {/* PATIENT REGISTER LINK - NEW (Non Admin) */}
+                    <li>
+                      <NavLink
+                        to="/patients/register"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaUserPlus className="mr-2 text-green-500 w-4 h-4" />
+                        Register Patient
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/patients"
+                        end
+                        className={({ isActive }) =>
+                          `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
+                        }
+                        onClick={handleNavClick}
+                      >
+                        <FaUsers className="mr-2 text-blue-500 w-4 h-4" />
+                        All Patients
+                      </NavLink>
+                    </li>
+
                     <li>
                       <NavLink
                         to="/patients/pregnant-women"
@@ -363,10 +453,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* Non-admin remaining links */}
               <li>
-                <NavLink 
-                  to="/patient-visits" 
+                <NavLink
+                  to="/patient-visits"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -377,10 +467,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/visit-routings" 
+                <NavLink
+                  to="/visit-routings"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -392,10 +482,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* LAB TESTS & RESULTS & MEDICATIONS & VACCINATIONS SECTION (Non Admin) */}
               <li>
-                <NavLink 
-                  to="/lab-tests" 
+                <NavLink
+                  to="/lab-tests"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -406,10 +496,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/lab-results" 
+                <NavLink
+                  to="/lab-results"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -421,10 +511,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* MEDICATIONS LINK */}
               <li>
-                <NavLink 
-                  to="/medications" 
+                <NavLink
+                  to="/medications"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -436,10 +526,10 @@ const SideNavigation = ({ onClose }) => {
 
               {/* VACCINATIONS LINK - NEWLY ADDED (Non Admin) */}
               <li>
-                <NavLink 
-                  to="/vaccinations" 
+                <NavLink
+                  to="/vaccinations"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
@@ -450,10 +540,10 @@ const SideNavigation = ({ onClose }) => {
               </li>
 
               <li>
-                <NavLink 
-                  to="/visits" 
+                <NavLink
+                  to="/visits"
                   end
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `${navItemClasses} ${hoverNavItemClasses} ${isActive ? activeNavItemClasses : ''}`
                   }
                   onClick={handleNavClick}
